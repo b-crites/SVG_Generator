@@ -1,20 +1,31 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { genSVG } = require('./lib/svg');
-const { prompts } = require('./lib/prompts');
+const { createSVG } = require('./lib/svg');
+const { questions } = require('./lib/prompts');
+
 
 const promptQuestions = () => {
-    return inquirer.prompt(prompts);
+    return inquirer.prompt(questions);
 };
 
+
 async function main() {
+    
     const answers = await promptQuestions();
     console.log(answers);
 
-    const svg = genSVG(answers);
+    // Generate an SVG string using the createSVG function and the user's answers
+    const svg = createSVG(answers);
 
-    fs.writeFileSync('examples/logo.svg', svg.svg());
-    console.log('Generated logo.svg');
+    // Write the SVG string to a file named logo.svg in the examples directory
+    fs.writeFile('examples/logo.svg', svg, (err) => {
+        if (err) {
+            console.error('Error writing file:', err);
+        } else {
+            console.log('Generated logo.svg');
+        }
+    });
 }
 
+// Call the main function to start the program
 main();
