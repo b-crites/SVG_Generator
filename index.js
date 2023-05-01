@@ -1,11 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { createSVG } = require('./lib/svg');
-const { questions } = require('./lib/prompts');
+const { prompts } = require('./lib/prompts');
 
 
 const promptQuestions = () => {
-    return inquirer.prompt(questions);
+    return inquirer.prompt(prompts);
 };
 
 
