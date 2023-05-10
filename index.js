@@ -15,10 +15,10 @@ async function main() {
     console.log(answers);
 
     // Generate an SVG string using the createSVG function and the user's answers
-    const svg = createSVG(shape);
+    const svg = createSVG(answers);
 
     // Write the SVG string to a file named logo.svg in the examples directory
-    fs.writeFile('examples/logo.svg', svg, (err) => {
+    fs.writeFile('logo.svg', svg, (err) => {
         if (err) {
             console.error('Error writing file:', err);
         } else {
